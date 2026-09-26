@@ -1,14 +1,16 @@
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         n = len(s)
-        i = 0
         max_substring_len = 0
-        mp = {}
 
-        for j in range(n):
-            if s[j] in mp:
-                i = mp[s[j]] + 1
-            mp[s[j]] = j
-            max_substring_len = max(max_substring_len, j - i + 1)
+        for i in range(n):
+            curr_set = set()
+            curr_set.add(s[i])
+            last_i = i + 1
+
+            while last_i < n and s[last_i] not in curr_set:
+                curr_set.add(s[last_i])
+                last_i += 1
+            max_substring_len = max(max_substring_len, last_i - i)
 
         return max_substring_len
