@@ -7,7 +7,7 @@ class Solution:
 
         for j in range(n):
             if s[j] in mp:
-                i = max(i, mp[s[j]] + 1)
+                i = mp[s[j]] + 1
             mp[s[j]] = j
             max_substring_len = max(max_substring_len, j - i + 1)
 
