@@ -1,0 +1,25 @@
+from collections import defaultdict
+
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        mp = defaultdict(int)
+
+        for start, end in intervals:
+            mp[start] += 1
+            mp[end] -= 1
+
+        interval = []
+        have = 0
+        out = []
+
+        for i in sorted(mp):
+            have += mp[i]
+            if not interval:
+                interval = [i]
+            else:
+                if have == 0:
+                    interval.append(i)
+                    out.append(interval)
+                    interval = []
+        
+        return out
